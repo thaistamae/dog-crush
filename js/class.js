@@ -63,6 +63,7 @@ class Game {
         newGame.verifyElementsInColumnsToBeEminated();
         newGame.substituteElementsToBeEliminated();
         newGame.sumScore();
+        this.clearArray = [];
         newGame.eliminateTenFromMatrix();
         newGame.countElementsToBeGenarated();
         newGame.generateRandomElements();
@@ -92,7 +93,7 @@ class Game {
     verifyElementsInRowsToBeEminated(){
 
         for (let i = 0; i < this.boardRowsLength; i++) {    
-            for (let j = 0; j < this.boardColumnsLength; j++) {
+            for (let j = 0; j < this.boardColumnsLength-5; j++) {
               
             let verification1 = 
             (this.board[i][j] === this.board[i][j + 1] &&
@@ -100,39 +101,46 @@ class Game {
              this.board[i][j] === this.board[i][j + 3] &&
              this.board[i][j] === this.board[i][j + 4]);
 
+             if(verification1){
+            this.eliminationPositionsInRows.push(`${[i]}${[j]}`);
+            this.eliminationPositionsInRows.push(`${[i]}${[j+1]}`);
+            this.eliminationPositionsInRows.push(`${[i]}${[j+2]}`);
+            this.eliminationPositionsInRows.push(`${[i]}${[j+3]}`);
+            this.eliminationPositionsInRows.push(`${[i]}${[j+4]}`);
+            }
+        }for (let i = 0; i < this.boardRowsLength; i++) {    
+            for (let j = 0; j < this.boardColumnsLength-4; j++){         
             let verification2 = 
             (this.board[i][j] === this.board[i][j + 1] &&
              this.board[i][j] === this.board[i][j + 2] && 
              this.board[i][j] === this.board[i][j + 3]);
-
+            
+            if(verification2){
+                this.eliminationPositionsInRows.push(`${[i]}${[j]}`);
+                this.eliminationPositionsInRows.push(`${[i]}${[j+1]}`);
+                this.eliminationPositionsInRows.push(`${[i]}${[j+2]}`);
+                this.eliminationPositionsInRows.push(`${[i]}${[j+3]}`);
+                }
+            }
+        }for (let i = 0; i < this.boardRowsLength; i++) {    
+            for (let j = 0; j < this.boardColumnsLength-3; j++){        
             let verification3 = 
             (this.board[i][j] === this.board[i][j + 1] && 
              this.board[i][j] === this.board[i][j + 2])
                       
-                if(verification1){
-                    this.eliminationPositionsInRows.push(`${[i]}${[j]}`);
-                    this.eliminationPositionsInRows.push(`${[i]}${[j+1]}`);
-                    this.eliminationPositionsInRows.push(`${[i]}${[j+2]}`);
-                    this.eliminationPositionsInRows.push(`${[i]}${[j+3]}`);
-                    this.eliminationPositionsInRows.push(`${[i]}${[j+4]}`);
-                } else if(verification2){
-                    this.eliminationPositionsInRows.push(`${[i]}${[j]}`);
-                    this.eliminationPositionsInRows.push(`${[i]}${[j+1]}`);
-                    this.eliminationPositionsInRows.push(`${[i]}${[j+2]}`);
-                    this.eliminationPositionsInRows.push(`${[i]}${[j+3]}`);
-                } else if(verification3){
-                    this.eliminationPositionsInRows.push(`${[i]}${[j]}`);  
-                    this.eliminationPositionsInRows.push(`${[i]}${[j+1]}`);
-                    this.eliminationPositionsInRows.push(`${[i]}${[j+2]}`);
+            if(verification3){
+              this.eliminationPositionsInRows.push(`${[i]}${[j]}`);  
+              this.eliminationPositionsInRows.push(`${[i]}${[j+1]}`);
+              this.eliminationPositionsInRows.push(`${[i]}${[j+2]}`);
                 }
             }
         }
 
     }
-
+}
     verifyElementsInColumnsToBeEminated(){
 
-        for (let i = 0; i < this.boardRowsLength - 3; i++) {    
+        for (let i = 0; i < this.boardRowsLength-5; i++) {    
             for (let j = 0; j < this.boardColumnsLength; j++) {
               
                 let verification1 = 
@@ -141,33 +149,42 @@ class Game {
                  this.board[i][j] === this.board[i + 3][j] &&
                  this.board[i][j] === this.board[i + 4][j]);
 
-                let verification2 = 
-                (this.board[i][j] === this.board[i + 1][j] &&
-                 this.board[i][j] === this.board[i + 2][j] && 
-                 this.board[i][j] === this.board[i + 3][j]);
-     
-                let verification3 = 
-                (this.board[i][j] === this.board[i + 1][j] && 
-                 this.board[i][j] === this.board[i + 2][j]);
-                      
                 if(verification1){
-                    this.eliminationPositionsInColumns.push(`${[i]}${[j]}`);
-                    this.eliminationPositionsInColumns.push(`${[i+1]}${[j]}`);
-                    this.eliminationPositionsInColumns.push(`${[i+2]}${[j]}`);
-                    this.eliminationPositionsInColumns.push(`${[i+3]}${[j]}`);
-                    this.eliminationPositionsInColumns.push(`${[i+4]}${[j]}`);
-                } else if(verification2){
-                    this.eliminationPositionsInColumns.push(`${[i]}${[j]}`);
-                    this.eliminationPositionsInColumns.push(`${[i+1]}${[j]}`);
-                    this.eliminationPositionsInColumns.push(`${[i+2]}${[j]}`);
-                    this.eliminationPositionsInColumns.push(`${[i+3]}${[j]}`);
-                } else if(verification3){
-                    this.eliminationPositionsInColumns.push(`${[i]}${[j]}`);  
-                    this.eliminationPositionsInColumns.push(`${[i+1]}${[j]}`);
-                    this.eliminationPositionsInColumns.push(`${[i+2]}${[j]}`);
+                this.eliminationPositionsInColumns.push(`${[i]}${[j]}`);
+                this.eliminationPositionsInColumns.push(`${[i+1]}${[j]}`);
+                this.eliminationPositionsInColumns.push(`${[i+2]}${[j]}`);
+                this.eliminationPositionsInColumns.push(`${[i+3]}${[j]}`);
+                this.eliminationPositionsInColumns.push(`${[i+4]}${[j]}`);
                 }
             }
+        } for (let i = 0; i < this.boardRowsLength-4; i++) {    
+            for (let j = 0; j < this.boardColumnsLength; j++){
+                let verification2 = 
+                (this.board[i][j] === this.board[i + 1][j] &&
+                this.board[i][j] === this.board[i + 2][j] && 
+                this.board[i][j] === this.board[i + 3][j]);
+
+                if (verification2){
+                this.eliminationPositionsInColumns.push(`${[i]}${[j]}`);
+                this.eliminationPositionsInColumns.push(`${[i+1]}${[j]}`);
+                this.eliminationPositionsInColumns.push(`${[i+2]}${[j]}`);
+                this.eliminationPositionsInColumns.push(`${[i+3]}${[j]}`);                
+                } 
+            }
+        } for (let i = 0; i < this.boardRowsLength-3; i++) {    
+            for (let j = 0; j < this.boardColumnsLength; j++){
+                let verification3 = 
+                (this.board[i][j] === this.board[i + 1][j] && 
+                this.board[i][j] === this.board[i + 2][j]);
+
+                if (verification3){
+                this.eliminationPositionsInColumns.push(`${[i]}${[j]}`);  
+                this.eliminationPositionsInColumns.push(`${[i+1]}${[j]}`);
+                this.eliminationPositionsInColumns.push(`${[i+2]}${[j]}`);
+
+            }
         }
+    }
     }
 
     substituteElementsToBeEliminated() {
@@ -176,12 +193,15 @@ class Game {
           const x = this.eliminationPositionsInRows[i][1];
           this.board[y][x] = 10;
         }
+        this.eliminationPositionsInRows = [];
 
         for (let i = 0; i < this.eliminationPositionsInColumns.length; i++) {
             const y = this.eliminationPositionsInColumns[i][0];
             const x = this.eliminationPositionsInColumns[i][1];
             this.board[y][x] = 10;
           }
+        
+        this.eliminationPositionsInColumns = [];
 
       }
 
@@ -200,11 +220,13 @@ class Game {
         this.clearArray.push(this.board[i].filter((currentElement) => currentElement !== 10)) 
         }
         this.board = this.clearArray
+        
     }
 
     resetScore(){
         this.score = 0;
     }
+
 }
                
 
