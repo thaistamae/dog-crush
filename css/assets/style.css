@@ -1,0 +1,27 @@
+.board {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px;
+  }
+  
+  .row {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+    
+  }
+  
+  .cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

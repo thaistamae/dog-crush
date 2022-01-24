@@ -1,55 +1,16 @@
-class Game {
-    constructor() {
-        this.boardRowsLength = 8;
-        this.boardColumnsLength = 8;
-        this.minesLength = 0;
-        this.board = [];
-        this.necessaryElements = 0;
-        this.randomArray = [];
-        this.typeOfElements = 5;
-    }
+const newGame = new Game();
 
-    generateEmptyBoard() {          
-        for (let i = 0; i < this.boardRowsLength; i++) {
-            this.board.push([]);
-        }
-        return this.board;
-    }
+const board = document.getElementById("board");
+const startButton = document.getElementById("createGame");
 
-    countElementsToBeGenarated() {
-        let elementsOnTheFullBoard = this.boardRowsLength * this.boardColumnsLength;
-        let elementsOnTheBoard = 0;
-        this.necessaryElements = elementsOnTheFullBoard - elementsOnTheBoard;
-        for(let i = 0; i < this.boardRowsLength; i++){
+const cells = document.getElementsByClassName("cell")
 
-            elementsOnTheBoard += this.board[i].length; 
-        }     
-            return this.necessaryElements;
-    }
-    
-    genarateRandomElements(){
-        
-        for(let i = 0; i < this.necessaryElements; i++){
-            this.randomArray.push(Math.floor(Math.random()*(this.typeOfElements)))
+newGame.printBoard(board);
 
-        }
-        return this.randomArray;
-    }
-
-    bringElementsToBoard(){
-        for(let i = 0; i < this.boardRowsLength; i++){
-            for(let j = 0; j < this.randomArray.length; j++){
-                if(this.board[i].length < this.boardColumnsLength){
-                    this.board[i].push(this.randomArray[j])
-                }
-            }
-        }
-        return this.board;
-    }
-
-
-}
-
-
-
-
+startButton.addEventListener("click", () => {
+    board.innerHTML = "";
+  
+    newGame.init();
+    newGame.printBoard(board);
+});
+  
