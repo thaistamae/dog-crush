@@ -74,15 +74,14 @@ class Game {
     printBoard(board) {
         for (let i = 0; i < this.board.length; i++) {
           const row = document.createElement("DIV");
-          row.classList.add("row");  
+          row.classList.add("row");
     
           for (let j = 0; j < this.board[i].length; j++) {
             const container = document.createElement("DIV");
             container.classList.add("container");  
-            const cell = document.createElement("SPAN");
-            cell.classList.add("cell");  
-            cell.innerText = this.board[i][j];
-            container.appendChild(cell);
+            container.setAttribute("draggable", "true");
+            container.setAttribute("id", `${i}${j}`);  
+            container.innerText = this.board[i][j];
             row.appendChild(container);
           }
     
@@ -93,7 +92,7 @@ class Game {
     verifyElementsInRowsToBeEminated(){
 
         for (let i = 0; i < this.boardRowsLength; i++) {    
-            for (let j = 0; j < this.boardColumnsLength-5; j++) {
+            for (let j = 0; j < this.boardColumnsLength-4; j++) {
               
             let verification1 = 
             (this.board[i][j] === this.board[i][j + 1] &&
@@ -109,7 +108,7 @@ class Game {
             this.eliminationPositionsInRows.push(`${[i]}${[j+4]}`);
             }
         }for (let i = 0; i < this.boardRowsLength; i++) {    
-            for (let j = 0; j < this.boardColumnsLength-4; j++){         
+            for (let j = 0; j < this.boardColumnsLength-3; j++){         
             let verification2 = 
             (this.board[i][j] === this.board[i][j + 1] &&
              this.board[i][j] === this.board[i][j + 2] && 
@@ -123,7 +122,7 @@ class Game {
                 }
             }
         }for (let i = 0; i < this.boardRowsLength; i++) {    
-            for (let j = 0; j < this.boardColumnsLength-3; j++){        
+            for (let j = 0; j < this.boardColumnsLength-2; j++){        
             let verification3 = 
             (this.board[i][j] === this.board[i][j + 1] && 
              this.board[i][j] === this.board[i][j + 2])
@@ -140,7 +139,7 @@ class Game {
 }
     verifyElementsInColumnsToBeEminated(){
 
-        for (let i = 0; i < this.boardRowsLength-5; i++) {    
+        for (let i = 0; i < this.boardRowsLength-4; i++) {    
             for (let j = 0; j < this.boardColumnsLength; j++) {
               
                 let verification1 = 
@@ -157,7 +156,7 @@ class Game {
                 this.eliminationPositionsInColumns.push(`${[i+4]}${[j]}`);
                 }
             }
-        } for (let i = 0; i < this.boardRowsLength-4; i++) {    
+        } for (let i = 0; i < this.boardRowsLength-3; i++) {    
             for (let j = 0; j < this.boardColumnsLength; j++){
                 let verification2 = 
                 (this.board[i][j] === this.board[i + 1][j] &&
@@ -171,7 +170,7 @@ class Game {
                 this.eliminationPositionsInColumns.push(`${[i+3]}${[j]}`);                
                 } 
             }
-        } for (let i = 0; i < this.boardRowsLength-3; i++) {    
+        } for (let i = 0; i < this.boardRowsLength-2; i++) {    
             for (let j = 0; j < this.boardColumnsLength; j++){
                 let verification3 = 
                 (this.board[i][j] === this.board[i + 1][j] && 
