@@ -224,6 +224,7 @@ class Game {
 
     resetScore(){
         this.score = 0;
+        
     }
 
 }

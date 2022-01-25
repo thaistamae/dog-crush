@@ -6,20 +6,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <link rel="stylesheet" href="./css/assets/style.css"/>
-
-        <title>Projeto 1</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@700&family=Roboto:wght@100;300;500;700;900&display=swap" rel="stylesheet">
+        <title>Dog Crush</title>
     </head>
     <body>
         <header>
-            <nav>
+            <nav class="navbar">
                 <div>
                     <h1>Dog Crush</h1>  
                 </div>
                 <div>
-                    <p>Score:</p>
-                    <p><!--aqui vai a pontuação--></p>
-                    <button id="createGame" type="button">START</button>
-                    <button id="updateBoard" type="button">updateBoard!</button>
+                    <div class = "score">
+                        <p>Score:</p>
+                        <p id="score"></p>
+                    </div>
+                    <button id="createGame" type="button">RESET</button>
                 
                 </div>  
             </nav>

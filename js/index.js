@@ -2,53 +2,53 @@
 const newGame = new Game();
 
 const board = document.getElementById("board");
-const startButton = document.getElementById("createGame");
-const updateBoard = document.getElementById("updateBoard");
+const resetButton = document.getElementById("createGame");
+const score = document.getElementById("score");
 let containers;
 
-
-function setStartButton(){
-    startButton.innerText = "RESET";
+function cleanLinesAndColumns(){
+    board.innerHTML = "";
+    for(let i = 0; i < 20; i++){
+    newGame.updateBoard();
+    }
+    newGame.printBoard(board);
 }
 
-startButton.addEventListener("click", () => {
-    if (startButton.innerText === "START"){
+//Gerar tela inicial
+newGame.init();
+cleanLinesAndColumns();
+containers = document.querySelectorAll('.container');
+newGame.score = 0;
+score.innerText = newGame.score;
+
+
+containers.forEach((container) => {
+    container.addEventListener('dragstart', dragstart)
+    container.addEventListener('dragover', dragover)
+    container.addEventListener('dragenter', dragenter)
+    container.addEventListener('drop', drop)
+    container.addEventListener('dragend', dragend)
+})        
+
+// RESETBUTTON
+
+resetButton.addEventListener("click", () => {
         board.innerHTML = "";
         newGame.init();
-        newGame.printBoard(board);
-        setStartButton();
+        cleanLinesAndColumns();      
+        
         containers = document.querySelectorAll('.container');
 
         containers.forEach((container) => {
-            container.addEventListener('dragstart', dragstart)
-            container.addEventListener('dragover', dragover)
-            container.addEventListener('dragenter', dragenter)
-            //container.addEventListener('dragleave', dragleave)
-            container.addEventListener('drop', drop)
-            container.addEventListener('dragend', dragend)
-        })        
+        container.addEventListener('dragstart', dragstart)
+        container.addEventListener('dragover', dragover)
+        container.addEventListener('dragenter', dragenter)
+        container.addEventListener('drop', drop)
+        container.addEventListener('dragend', dragend)
+})        
+    }  
+);
 
-    }else{
-        board.innerHTML = "";
-        newGame.init();
-        newGame.printBoard(board);
-
-
-        
-    }
-    
-});
-
-updateBoard.addEventListener("click", () => {
-    board.innerHTML = "";
-  
-    for(let i = 0; i < 50; i++){
-    newGame.updateBoard();
-    }
-
-    newGame.printBoard(board);
-
-});
 
 // Movimentos dos icones
 
@@ -71,10 +71,6 @@ function dragenter(event){
     event.preventDefault()
 }
 
-/*function dragleave() {
-    this.textContent = ''
-}*/
-
 function drop() {
     cellReplaced = this.textContent
     cellIdReplaced = parseInt(this.id)
@@ -88,7 +84,7 @@ function dragend(){
     
     if (cellIdReplaced && validMove) {
         cellIdReplaced = null;
-        
+
     }  else if (cellIdReplaced && !validMove) {
         containers[cellIdReplaced].textContent = cellReplaced
         containers[cellIdDragged].textContent = cellDragged
@@ -98,3 +94,4 @@ function dragend(){
 
     }
 }
+

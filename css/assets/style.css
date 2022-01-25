@@ -1,10 +1,47 @@
+body{
+  display:flex;
+  align-items:center;
+}
+.navbar{
+  float: left;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 600px;  
+  width: 400px;
+  background-color:#F1F5DC;
+}
+
 .board {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    margin: 20px;
+    margin: 0 20px;
+    border: 1px solid;
+    padding: 10px 10px;
+    width: 557px;
   }
   
+
+h1{ 
+    padding: 50px;
+    font-size: 70px;
+    font-family: 'Cabin Sketch', sans-serif;
+    font-weight: 700;
+  }
+
+  p{
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
+    padding: 0 10px;
+  }  
+  
+  .score{
+    display: flex;
+    justify-content: center;
+  }
+
+
   .row {
     display: flex;
     gap: 20px;
@@ -19,4 +56,6 @@
     border: 1px solid black;
     
   }
+
+
   
