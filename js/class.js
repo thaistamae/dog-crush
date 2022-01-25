@@ -80,7 +80,7 @@ class Game {
             const container = document.createElement("DIV");
             container.classList.add("container");  
             container.setAttribute("draggable", "true");
-            container.setAttribute("id", `${i}${j}`);  
+            container.setAttribute("id", `${j+(i*8)}`);  
             container.innerText = this.board[i][j];
             row.appendChild(container);
           }

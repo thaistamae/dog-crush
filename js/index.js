@@ -23,7 +23,7 @@ startButton.addEventListener("click", () => {
             container.addEventListener('dragstart', dragstart)
             container.addEventListener('dragover', dragover)
             container.addEventListener('dragenter', dragenter)
-            container.addEventListener('dragleave', dragleave)
+            //container.addEventListener('dragleave', dragleave)
             container.addEventListener('drop', drop)
             container.addEventListener('dragend', dragend)
         })        
@@ -32,6 +32,9 @@ startButton.addEventListener("click", () => {
         board.innerHTML = "";
         newGame.init();
         newGame.printBoard(board);
+
+
+        
     }
     
 });
@@ -57,36 +60,41 @@ let cellIdReplaced;
 function dragstart(){
     cellDragged = this.textContent
     cellIdDragged = parseInt(this.id)
+    console.log(cellIdDragged)
 }
 
-function dragover(e){
-    e.preventDefault()
+function dragover(event){
+    event.preventDefault()
 }
 
-function dragenter(e){
-    e.preventDefault()
+function dragenter(event){
+    event.preventDefault()
 }
 
-function dragleave() {
+/*function dragleave() {
     this.textContent = ''
-}
+}*/
 
 function drop() {
     cellReplaced = this.textContent
     cellIdReplaced = parseInt(this.id)
-    this.textContent = cellDragged
+    this.textContent = cellDragged  
     containers[cellIdDragged].textContent = cellReplaced
 }
 
 function dragend(){
-    let validMoves = [cellIdDragged -1 , cellIdDragged -10, cellIdDragged +1, cellIdDragged +10]
+    let validMoves = [cellIdDragged -1 , cellIdDragged -8, cellIdDragged +1, cellIdDragged +8]
     let validMove = validMoves.includes(cellIdReplaced)
-    console.log(validMove)
+    
     if (cellIdReplaced && validMove) {
-        cellIdReplaced = null
+        cellIdReplaced = null;
+        
     }  else if (cellIdReplaced && !validMove) {
         containers[cellIdReplaced].textContent = cellReplaced
-        containers[cellIdReplaced].textContent = cellDragged
-    } else  containers[cellIdDragged].textContent = cellReplaced
-}
+        containers[cellIdDragged].textContent = cellDragged
+        cellIdReplaced = null;
 
+    } else {containers[cellIdDragged].textContent = cellDragged
+
+    }
+}
