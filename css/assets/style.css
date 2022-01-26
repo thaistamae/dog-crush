@@ -13,7 +13,7 @@ body{
   flex-direction: column;
   justify-content: center;
   height: 538px;  
-  width: 370px;
+  width: 360px;
   background-color:rgba(230, 230, 230, 0.8);
 
 }
@@ -39,7 +39,7 @@ main{
     align-items:center;
     justify-content: center;
     height: 538px;  
-    width: 370px;
+    width: 360px;
     background-color:rgba(230, 230, 230, 0.8);
   }
 
@@ -61,7 +61,7 @@ h1{
 .fonte{
   font-size: 12px;
   font-family: 'Preahvihear', sans-serif;
-  padding: 80px 0 0 140px;
+  padding: 80px 0 0 130px;
 }
 
   p{
