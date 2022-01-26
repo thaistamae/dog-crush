@@ -59,15 +59,15 @@ class Game {
     }
 
     updateBoard(){
-        newGame.verifyElementsInRowsToBeEminated();
-        newGame.verifyElementsInColumnsToBeEminated();
-        newGame.substituteElementsToBeEliminated();
-        newGame.sumScore();
+        this.verifyElementsInRowsToBeEminated();
+        this.verifyElementsInColumnsToBeEminated();
+        this.substituteElementsToBeEliminated();
+        this.sumScore();
         this.clearArray = [];
-        newGame.eliminateTenFromMatrix();
-        newGame.countElementsToBeGenarated();
-        newGame.generateRandomElements();
-        newGame.bringElementsToBoard();
+        this.eliminateTenFromMatrix();
+        this.countElementsToBeGenarated();
+        this.generateRandomElements();
+        this.bringElementsToBoard();
     }
 
 

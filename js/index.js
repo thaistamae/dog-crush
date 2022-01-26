@@ -57,10 +57,16 @@ let cellReplaced;
 let cellIdDragged;
 let cellIdReplaced;
 
+let cellDraggedBoard;
+let cellReplacedBoard;
+let cellIdDraggedBoard;
+let cellIdReplacedBoard;
+
 function dragstart(){
     cellDragged = this.textContent
     cellIdDragged = parseInt(this.id)
-    console.log(cellIdDragged)
+    cellDraggedBoard = newGame.board[Math.floor(parseInt(this.id)/8)][Math.floor(parseInt(this.id)%8)]    
+    cellIdDraggedBoard = `${Math.floor(parseInt(this.id)/8)} ${Math.floor(parseInt(this.id)%8)}`
 }
 
 function dragover(event){
@@ -74,8 +80,20 @@ function dragenter(event){
 function drop() {
     cellReplaced = this.textContent
     cellIdReplaced = parseInt(this.id)
-    this.textContent = cellDragged  
+    cellReplacedBoard = newGame.board[Math.floor(parseInt(this.id)/8)][Math.floor(parseInt(this.id)%8)]
+    cellIdReplacedBoard = `${Math.floor(parseInt(this.id)/8)} ${Math.floor(parseInt(this.id)%8)}`
+
+    this.textContent = cellDragged
+
+    newGame.board[`${cellIdReplacedBoard[0]}`].splice([`${cellIdReplacedBoard[2]}`],1,cellDraggedBoard)
+
     containers[cellIdDragged].textContent = cellReplaced
+
+    let renamedReplaced = `newGame.board`+cellIdReplacedBoard 
+    renamedReplaced = cellDragged
+    newGame.board[`${cellIdDraggedBoard[0]}`].splice([`${cellIdDraggedBoard[2]}`],1,cellReplacedBoard)
+
+
 }
 
 function dragend(){
@@ -84,6 +102,16 @@ function dragend(){
     
     if (cellIdReplaced && validMove) {
         cellIdReplaced = null;
+        cleanLinesAndColumns(); 
+        containers = document.querySelectorAll('.container');
+
+        containers.forEach((container) => {
+        container.addEventListener('dragstart', dragstart)
+        container.addEventListener('dragover', dragover)
+        container.addEventListener('dragenter', dragenter)
+        container.addEventListener('drop', drop)
+        container.addEventListener('dragend', dragend)
+        })
 
     }  else if (cellIdReplaced && !validMove) {
         containers[cellIdReplaced].textContent = cellReplaced
@@ -93,5 +121,5 @@ function dragend(){
     } else {containers[cellIdDragged].textContent = cellDragged
 
     }
-}
 
+}
