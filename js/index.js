@@ -6,21 +6,42 @@ const resetButton = document.getElementById("createGame");
 const score = document.getElementById("score");
 let containers;
 
+
 function cleanLinesAndColumns(){
     board.innerHTML = "";
     for(let i = 0; i < 20; i++){
     newGame.updateBoard();
     }
-    newGame.printBoard(board);
+    newGame.printBoard();
+}
+
+function printScore(){
+    score.innerText = newGame.score;
+}
+
+function includeIcons(){
+    for (let i = 0; i < 64; i++){
+        if (containers[i].textContent == 1){
+            containers[i].classList.add("border-collie")
+        } else if (containers[i].textContent == 2){
+            containers[i].classList.add("bull-terrier")
+        } else if (containers[i].textContent == 3){
+            containers[i].classList.add("dogo-argentino")
+        } else if (containers[i].textContent == 4){
+            containers[i].classList.add("dogo-alemao")
+        }else if (containers[i].textContent == 5){
+            containers[i].classList.add("poodle-frances")
+        }
+}
 }
 
 //Gerar tela inicial
 newGame.init();
 cleanLinesAndColumns();
 containers = document.querySelectorAll('.container');
-newGame.score = 0;
+newGame.resetScore();
 score.innerText = newGame.score;
-
+includeIcons();
 
 containers.forEach((container) => {
     container.addEventListener('dragstart', dragstart)
@@ -36,7 +57,10 @@ resetButton.addEventListener("click", () => {
         board.innerHTML = "";
         newGame.init();
         cleanLinesAndColumns();      
+        newGame.resetScore();
+        score.innerText = newGame.score;
         
+
         containers = document.querySelectorAll('.container');
 
         containers.forEach((container) => {
@@ -45,6 +69,7 @@ resetButton.addEventListener("click", () => {
         container.addEventListener('dragenter', dragenter)
         container.addEventListener('drop', drop)
         container.addEventListener('dragend', dragend)
+        includeIcons();
 })        
     }  
 );
@@ -61,6 +86,7 @@ let cellDraggedBoard;
 let cellReplacedBoard;
 let cellIdDraggedBoard;
 let cellIdReplacedBoard;
+let renamedReplaced;
 
 function dragstart(){
     cellDragged = this.textContent
@@ -89,10 +115,8 @@ function drop() {
 
     containers[cellIdDragged].textContent = cellReplaced
 
-    let renamedReplaced = `newGame.board`+cellIdReplacedBoard 
-    renamedReplaced = cellDragged
     newGame.board[`${cellIdDraggedBoard[0]}`].splice([`${cellIdDraggedBoard[2]}`],1,cellReplacedBoard)
-
+    console.log(newGame.board)
 }
 
 function dragend(){
@@ -101,8 +125,9 @@ function dragend(){
     
     if (cellIdReplaced && validMove) {
         cellIdReplaced = null;
-        cleanLinesAndColumns(); 
-        
+        cleanLinesAndColumns();
+        printScore();
+                
         console.log(newGame.board);
         containers = document.querySelectorAll('.container');
 
@@ -113,7 +138,7 @@ function dragend(){
         container.addEventListener('drop', drop)
         container.addEventListener('dragend', dragend)
 
-        
+        includeIcons();
 
         })
 
@@ -126,4 +151,7 @@ function dragend(){
 
     }
 
+
+
 }
+

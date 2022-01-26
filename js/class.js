@@ -71,7 +71,7 @@ class Game {
     }
 
 
-    printBoard(board) {
+    printBoard() {
         for (let i = 0; i < this.board.length; i++) {
           const row = document.createElement("DIV");
           row.classList.add("row");
@@ -106,6 +106,7 @@ class Game {
             this.eliminationPositionsInRows.push(`${[i]}${[j+2]}`);
             this.eliminationPositionsInRows.push(`${[i]}${[j+3]}`);
             this.eliminationPositionsInRows.push(`${[i]}${[j+4]}`);
+         
             }
         }for (let i = 0; i < this.boardRowsLength; i++) {    
             for (let j = 0; j < this.boardColumnsLength-3; j++){         
@@ -119,6 +120,7 @@ class Game {
                 this.eliminationPositionsInRows.push(`${[i]}${[j+1]}`);
                 this.eliminationPositionsInRows.push(`${[i]}${[j+2]}`);
                 this.eliminationPositionsInRows.push(`${[i]}${[j+3]}`);
+                
                 }
             }
         }for (let i = 0; i < this.boardRowsLength; i++) {    
@@ -131,6 +133,7 @@ class Game {
               this.eliminationPositionsInRows.push(`${[i]}${[j]}`);  
               this.eliminationPositionsInRows.push(`${[i]}${[j+1]}`);
               this.eliminationPositionsInRows.push(`${[i]}${[j+2]}`);
+         
                 }
             }
         }
@@ -204,6 +207,7 @@ class Game {
 
       }
 
+
     sumScore(){
         for(let i = 0; i < this.boardRowsLength; i++){
             for(let j = 0; j < this.boardColumnsLength; j++){
@@ -226,6 +230,7 @@ class Game {
         this.score = 0;
         
     }
+
 
 }
                

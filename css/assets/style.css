@@ -2,7 +2,7 @@ body{
   padding: 30px 15px ;
   display:flex;
   align-items:center;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../images/background.png");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../images/background.png");
   background-size: cover;
   width: 1300px;
 }
@@ -14,7 +14,7 @@ body{
   justify-content: center;
   height: 538px;  
   width: 370px;
-  background-color:rgba(230, 230, 230, 0.9);
+  background-color:rgba(230, 230, 230, 0.8);
 
 }
 
@@ -30,7 +30,7 @@ main{
     margin: 0 20px;
     padding: 10px 10px;
     width: 515px;
-    background-color:rgba(230, 230, 230, 0.9);
+    background-color:rgba(230, 230, 230, 0.8);
   }
 
 .rightbar {
@@ -40,12 +40,14 @@ main{
     justify-content: center;
     height: 538px;  
     width: 370px;
-    background-color:rgba(230, 230, 230, 0.9);
+    background-color:rgba(230, 230, 230, 0.8);
   }
 
 button{
   height: 30px;  
   width: 200px;
+  size: 30px;
+  font-family: 'Preahvihear', sans-serif;
 }
 
 h1{ 
@@ -78,9 +80,35 @@ h1{
     align-items: center;
     width: 45px;
     height: 45px;
-    border: 1px solid black;
-    
+    color: rgba(0, 0, 0, 0.0);
   }
 
+  .border-collie{
+    background-image: url(../images/border-collie2.png);
+    height: 45px;
+    width: 45px;
+  }
 
+  .bull-terrier{
+    background-image:url(../images/bull-terrier2.png);
+    height: 45px;
+    width: 45px;
+  }    
   
+  .dogo-argentino{
+    background-image:url(../images/dogo-argentino2.png);
+    height: 45px;
+    width: 45px;
+  }
+
+  .dogo-alemao{
+    background-image:url(../images/dogue-alemao2.png);
+    max-height: 45px;
+    max-width: 45px;
+  }
+  
+  .poodle-frances{
+    background-image:url(../images/poodle-frances2.png);
+    height: 45px;
+    width: 45px;
+  }
