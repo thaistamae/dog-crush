@@ -93,7 +93,6 @@ function drop() {
     renamedReplaced = cellDragged
     newGame.board[`${cellIdDraggedBoard[0]}`].splice([`${cellIdDraggedBoard[2]}`],1,cellReplacedBoard)
 
-
 }
 
 function dragend(){
@@ -103,6 +102,8 @@ function dragend(){
     if (cellIdReplaced && validMove) {
         cellIdReplaced = null;
         cleanLinesAndColumns(); 
+        
+        console.log(newGame.board);
         containers = document.querySelectorAll('.container');
 
         containers.forEach((container) => {
@@ -111,6 +112,9 @@ function dragend(){
         container.addEventListener('dragenter', dragenter)
         container.addEventListener('drop', drop)
         container.addEventListener('dragend', dragend)
+
+        
+
         })
 
     }  else if (cellIdReplaced && !validMove) {
