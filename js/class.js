@@ -5,7 +5,7 @@ class Game {
         this.board = [];
         this.necessaryElements = 0;
         this.randomArray = [];
-        this.typeOfElements = 5;
+        this.typeOfElements = 6;
         this.eliminationPositionsInRows = [];
         this.eliminationPositionsInColumns = [];
         this.score = 0;

@@ -31,6 +31,8 @@ function includeIcons(){
             containers[i].classList.add("dogo-alemao")
         }else if (containers[i].textContent == 5){
             containers[i].classList.add("poodle-frances")
+        }else if (containers[i].textContent == 6){
+            containers[i].classList.add("retriever-dourado")
         }
 }
 }
