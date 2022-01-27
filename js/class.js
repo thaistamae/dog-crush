@@ -13,6 +13,7 @@ class Game {
         //cronometro
         this.currentTime = 60;
         this.intervalId = null;
+        this.containers = null;
     }
 
     generateEmptyBoard() {          
