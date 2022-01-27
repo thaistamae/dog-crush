@@ -1,12 +1,19 @@
-
 const newGame = new Game();
 
+//game
 const board = document.getElementById("board");
 const resetButton = document.getElementById("createGame");
 const score = document.getElementById("score");
 let containers;
 
+// cronometer
+const btnStart = document.getElementById('btnStart');
+const minDecElement = document.getElementById('minDec');
+const minUniElement = document.getElementById('minUni');
+const secDecElement = document.getElementById('secDec');
+const secUniElement = document.getElementById('secUni');
 
+// funcões do game 
 function cleanLinesAndColumns(){
     board.innerHTML = "";
     for(let i = 0; i < 20; i++){
@@ -45,13 +52,16 @@ newGame.resetScore();
 score.innerText = newGame.score;
 includeIcons();
 
-containers.forEach((container) => {
-    container.addEventListener('dragstart', dragstart)
-    container.addEventListener('dragover', dragover)
-    container.addEventListener('dragenter', dragenter)
-    container.addEventListener('drop', drop)
-    container.addEventListener('dragend', dragend)
-})        
+btnStart.addEventListener('click', () =>{
+    containers.forEach((container) => {
+        container.addEventListener('dragstart', dragstart)
+        container.addEventListener('dragover', dragover)
+        container.addEventListener('dragenter', dragenter)
+        container.addEventListener('drop', drop)
+        container.addEventListener('dragend', dragend)
+    })
+});
+        
 
 // RESETBUTTON
 
@@ -60,11 +70,12 @@ resetButton.addEventListener("click", () => {
         newGame.init();
         cleanLinesAndColumns();      
         newGame.resetScore();
-        score.innerText = newGame.score;
-        
+        score.innerText = newGame.score;   
+        newGame.reset();
+        printTime();
 
         containers = document.querySelectorAll('.container');
-
+        
         containers.forEach((container) => {
         container.addEventListener('dragstart', dragstart)
         container.addEventListener('dragover', dragover)
@@ -157,3 +168,43 @@ function dragend(){
 
 }
 
+// funções do cronometros
+
+function printTime() {
+    printMinutes();
+    printSeconds();
+  }
+  
+  function printMinutes() {
+    minDecElement.innerText = newGame.computeTwoDigitNumber(newGame.getMinutes())[0]
+    minUniElement.innerText = newGame.computeTwoDigitNumber(newGame.getMinutes())[1]
+  }
+  
+  function printSeconds() {
+    secDecElement.innerText = newGame.computeTwoDigitNumber(newGame.getSeconds())[0]
+    secUniElement.innerText = newGame.computeTwoDigitNumber(newGame.getSeconds())[1]
+  }
+  
+  
+  function setPauseBtn() {
+    newGame.stop();
+    btnStart.innerText = "START"
+    
+  }
+  
+  function setStartBtn() {
+    newGame.start(printTime);
+    btnStart.innerText = "PAUSE"
+  }
+
+  
+  // Start/Stop Button
+  btnStart.addEventListener('click', () => {
+    if(btnStart.textContent === "START"){
+        setStartBtn();   
+    }else if(btnStart.textContent === "PAUSE"){
+        setPauseBtn();
+      }
+  
+    });
+  

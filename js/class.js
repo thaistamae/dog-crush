@@ -10,6 +10,9 @@ class Game {
         this.eliminationPositionsInColumns = [];
         this.score = 0;
         this.clearArray = [];
+        //cronometro
+        this.currentTime = 60;
+        this.intervalId = null;
     }
 
     generateEmptyBoard() {          
@@ -230,10 +233,43 @@ class Game {
         this.score = 0;
         
     }
-
-
-}
-               
-
-
-
+        
+//cronometro
+    
+    start(callback){
+      this.intervalId = setInterval(() =>{
+        this.currentTime --;
+      if(callback){
+        callback();
+        }if(this.currentTime <= 0){
+            clearInterval(this.intervalId);
+        }
+      }, 1000);
+        
+    }
+    
+    getMinutes() {
+      return Math.floor(this.currentTime / 60);    
+    }
+     
+    getSeconds() {
+      return this.currentTime % 60
+    }
+  
+    computeTwoDigitNumber(value) {
+      if(String(value).length === 2){
+        return String(value);
+      }else if(String(value).length === 1){
+        return  String("0"+value)
+      }
+    }   
+  
+    stop() {
+      clearInterval(this.intervalId);
+    }
+  
+    reset() {
+      this.currentTime = 60
+    }
+  
+  }
