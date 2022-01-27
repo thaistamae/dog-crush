@@ -73,17 +73,20 @@ resetButton.addEventListener("click", () => {
         score.innerText = newGame.score;   
         newGame.reset();
         printTime();
-
+        containers = null;
         containers = document.querySelectorAll('.container');
-        
+        btnStart.addEventListener('click', () =>{
         containers.forEach((container) => {
         container.addEventListener('dragstart', dragstart)
         container.addEventListener('dragover', dragover)
         container.addEventListener('dragenter', dragenter)
         container.addEventListener('drop', drop)
         container.addEventListener('dragend', dragend)
+    })
+})    
+
         includeIcons();
-})        
+     
     }  
 );
 
@@ -189,6 +192,7 @@ function printTime() {
   function setPauseBtn() {
     newGame.stop();
     btnStart.innerText = "START"
+
     
   }
   
