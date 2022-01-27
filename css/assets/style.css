@@ -126,3 +126,19 @@ h1{
     height: 45px;
     width: 45px;
   }
+
+
+  #sphere {
+    box-sizing: border-box;
+    font-family: 'Preahvihear', sans-serif;
+    font-size: 30px;
+    height: 210px;
+    margin: 0 auto;
+    padding: 35px 0;
+    position: relative;
+    text-align: center;
+    width: 220px;
+    flex-direction: column;
+    align-items:center;
+    justify-content: space-between;
+  }
