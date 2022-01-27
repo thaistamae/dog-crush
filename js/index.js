@@ -4,7 +4,7 @@ const newGame = new Game();
 const board = document.getElementById("board");
 const resetButton = document.getElementById("createGame");
 const score = document.getElementById("score");
-let containers;
+//let containers
 
 // cronometer
 const btnStart = document.getElementById('btnStart');
@@ -28,32 +28,87 @@ function printScore(){
 
 function includeIcons(){
     for (let i = 0; i < 64; i++){
-        if (containers[i].textContent == 1){
-            containers[i].classList.add("border-collie")
-        } else if (containers[i].textContent == 2){
-            containers[i].classList.add("bull-terrier")
-        } else if (containers[i].textContent == 3){
-            containers[i].classList.add("dogo-argentino")
-        } else if (containers[i].textContent == 4){
-            containers[i].classList.add("dogo-alemao")
-        }else if (containers[i].textContent == 5){
-            containers[i].classList.add("poodle-frances")
-        }else if (containers[i].textContent == 6){
-            containers[i].classList.add("retriever-dourado")
+        if (newGame.containers[i].textContent == 1){
+            newGame.containers[i].classList.add("border-collie")
+        } else if (newGame.containers[i].textContent == 2){
+            newGame.containers[i].classList.add("bull-terrier")
+        } else if (newGame.containers[i].textContent == 3){
+            newGame.containers[i].classList.add("dogo-argentino")
+        } else if (newGame.containers[i].textContent == 4){
+            newGame.containers[i].classList.add("dogo-alemao")
+        }else if (newGame.containers[i].textContent == 5){
+            newGame.containers[i].classList.add("poodle-frances")
+        }else if (newGame.containers[i].textContent == 6){
+            newGame.containers[i].classList.add("retriever-dourado")
         }
 }
 }
 
+// funções do cronometros
+
+function printTime() {
+    printMinutes();
+    printSeconds();
+  }
+  
+  function printMinutes() {
+    minDecElement.innerText = newGame.computeTwoDigitNumber(newGame.getMinutes())[0]
+    minUniElement.innerText = newGame.computeTwoDigitNumber(newGame.getMinutes())[1]
+  }
+  
+  function printSeconds() {
+    secDecElement.innerText = newGame.computeTwoDigitNumber(newGame.getSeconds())[0]
+    secUniElement.innerText = newGame.computeTwoDigitNumber(newGame.getSeconds())[1]
+  }
+  
+  
+  function setPauseBtn() {
+    newGame.stop();
+    btnStart.innerText = "START"
+    cleanLinesAndColumns();
+    newGame.containers = document.querySelectorAll('.container');
+    includeIcons();
+    newGame.containers = null;
+  }
+  
+  function setStartBtn() {
+    newGame.start(printTime);
+    btnStart.innerText = "PAUSE"
+    newGame.containers = document.querySelectorAll('.container');
+    newGame.containers.forEach((container) => {
+        container.addEventListener('dragstart', dragstart)
+        container.addEventListener('dragover', dragover)
+        container.addEventListener('dragenter', dragenter)
+        container.addEventListener('drop', drop)
+        container.addEventListener('dragend', dragend)
+    })
+    
+  }
+
+  
+  // Start/Stop Button
+  btnStart.addEventListener('click', () => {
+    if(btnStart.textContent === "START"){
+        setStartBtn();   
+    }else if(btnStart.textContent === "PAUSE"){
+        setPauseBtn();
+      }
+  
+    });
+
+
+
 //Gerar tela inicial
 newGame.init();
 cleanLinesAndColumns();
-containers = document.querySelectorAll('.container');
+newGame.containers = document.querySelectorAll('.container');
 newGame.resetScore();
 score.innerText = newGame.score;
 includeIcons();
+printTime();
 
 btnStart.addEventListener('click', () =>{
-    containers.forEach((container) => {
+    newGame.containers.forEach((container) => {
         container.addEventListener('dragstart', dragstart)
         container.addEventListener('dragover', dragover)
         container.addEventListener('dragenter', dragenter)
@@ -71,12 +126,13 @@ resetButton.addEventListener("click", () => {
         cleanLinesAndColumns();      
         newGame.resetScore();
         score.innerText = newGame.score;   
+        setPauseBtn();
         newGame.reset();
         printTime();
-        containers = null;
-        containers = document.querySelectorAll('.container');
+
+        newGame.containers = document.querySelectorAll('.container');
         btnStart.addEventListener('click', () =>{
-        containers.forEach((container) => {
+        newGame.containers.forEach((container) => {
         container.addEventListener('dragstart', dragstart)
         container.addEventListener('dragover', dragover)
         container.addEventListener('dragenter', dragenter)
@@ -129,10 +185,10 @@ function drop() {
 
     newGame.board[`${cellIdReplacedBoard[0]}`].splice([`${cellIdReplacedBoard[2]}`],1,cellDraggedBoard)
 
-    containers[cellIdDragged].textContent = cellReplaced
+    newGame.containers[cellIdDragged].textContent = cellReplaced
 
     newGame.board[`${cellIdDraggedBoard[0]}`].splice([`${cellIdDraggedBoard[2]}`],1,cellReplacedBoard)
-    console.log(newGame.board)
+
 }
 
 function dragend(){
@@ -144,10 +200,10 @@ function dragend(){
         cleanLinesAndColumns();
         printScore();
                 
-        console.log(newGame.board);
-        containers = document.querySelectorAll('.container');
+        
+        newGame.containers = document.querySelectorAll('.container');
 
-        containers.forEach((container) => {
+        newGame.containers.forEach((container) => {
         container.addEventListener('dragstart', dragstart)
         container.addEventListener('dragover', dragover)
         container.addEventListener('dragenter', dragenter)
@@ -159,11 +215,11 @@ function dragend(){
         })
 
     }  else if (cellIdReplaced && !validMove) {
-        containers[cellIdReplaced].textContent = cellReplaced
-        containers[cellIdDragged].textContent = cellDragged
+        newGame.containers[cellIdReplaced].textContent = cellReplaced
+        newGame.containers[cellIdDragged].textContent = cellDragged
         cellIdReplaced = null;
 
-    } else {containers[cellIdDragged].textContent = cellDragged
+    } else {newGame.containers[cellIdDragged].textContent = cellDragged
 
     }
 
@@ -171,44 +227,5 @@ function dragend(){
 
 }
 
-// funções do cronometros
 
-function printTime() {
-    printMinutes();
-    printSeconds();
-  }
-  
-  function printMinutes() {
-    minDecElement.innerText = newGame.computeTwoDigitNumber(newGame.getMinutes())[0]
-    minUniElement.innerText = newGame.computeTwoDigitNumber(newGame.getMinutes())[1]
-  }
-  
-  function printSeconds() {
-    secDecElement.innerText = newGame.computeTwoDigitNumber(newGame.getSeconds())[0]
-    secUniElement.innerText = newGame.computeTwoDigitNumber(newGame.getSeconds())[1]
-  }
-  
-  
-  function setPauseBtn() {
-    newGame.stop();
-    btnStart.innerText = "START"
-
-    
-  }
-  
-  function setStartBtn() {
-    newGame.start(printTime);
-    btnStart.innerText = "PAUSE"
-  }
-
-  
-  // Start/Stop Button
-  btnStart.addEventListener('click', () => {
-    if(btnStart.textContent === "START"){
-        setStartBtn();   
-    }else if(btnStart.textContent === "PAUSE"){
-        setPauseBtn();
-      }
-  
-    });
   
