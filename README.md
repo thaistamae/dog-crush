@@ -1,6 +1,6 @@
 # Dog Crush
 
-This game was inspired by games like Candy Crush and Bejeweled, that I used to when I was youger.
+This game was inspired by games like Candy Crush and Bejeweled, that I used play to when I was youger.
 To develop it, I put into practice my knowledge acquired after two weeks in Ironhack WebDev Bootcamp.
 
 ## About the game
