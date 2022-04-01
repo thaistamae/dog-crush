@@ -1,15 +1,14 @@
 # Dog Crush
 
-Este jogo foi inspirado em jogos como Candy Crush e Bejeweled.
+This game was inspired by games like Candy Crush and Bejeweled, that I used to when I was youger.
+To develop it, I put into practice my knowledge acquired after two weeks in Ironhack WebDev Bootcamp.
 
-Para desenvolvê-lo, coloquei em prática o meu conhecimento adquirido nas duas primeiras semanas do bootcamp da Ironhack.
+## About the game
 
-## Sobre o jogo
+The main goal is to make the highest score in only 1 minute. 
 
-O objetivo do jogo é fazer a maior pontuação em 1 minuto. 
+To score, you need to crush 3 or more dogs horizontally or vertically.
 
-Para pontuar, é preciso juntar os cachorros iguais do tabuleiro, formando sequências de 3 ou mais cachorros iguais, tanto na horizontal quanto na vertical.
+With each formation, the player accumulates 100 points per dog lined up and the formation disappears from the board, giving space to new random dogs on the board.
 
-A cada formação, o jogador acumula 100 pontos por cachorro alinhado e a formação desaparece do tabuleiro, dando espaço a novos cachorros aleatórios no tabuleiro. 
-
-Para jogar, [clique aqui!](https://thaistamae.github.io/dog-crush/)
+[Click Here to Play!](https://thaistamae.github.io/dog-crush/)
